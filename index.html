@@ -1,211 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Air Blaster - Teacher's Day Special</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-            color: #ffffff;
-            overflow-x: hidden;
-            min-height: 100vh;
-            position: relative;
-        }
-
-        /* Animated stars background */
-        .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
-        .star { position: absolute; width: 2px; height: 2px; background: #ffffff; border-radius: 50%; animation: twinkle 2s infinite ease-in-out; }
-        @keyframes twinkle { 0%, 100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 1; transform: scale(1.2); } }
-
-        /* Nebula effect */
-        .nebula {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.2) 0%, transparent 50%),
-                        radial-gradient(circle at 40% 40%, rgba(120, 200, 255, 0.15) 0%, transparent 50%);
-            pointer-events: none; z-index: 2; animation: nebulaPulse 8s ease-in-out infinite;
-        }
-        @keyframes nebulaPulse { 0%, 100% { opacity: 0.8; } 50% { opacity: 1; } }
-
-        /* Main content */
-        .container { position: relative; z-index: 10; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
-        /* Header */
-        .header { display: flex; justify-content: space-between; align-items: center; padding: 20px 0;
-                  backdrop-filter: blur(10px); background: rgba(0, 0, 0, 0.3); border-radius: 15px;
-                  margin: 20px 0; border: 1px solid rgba(255, 255, 255, 0.1); }
-        .logo { font-family: 'Orbitron', monospace; font-size: 24px; font-weight: 700; color: #00d4ff;
-                text-shadow: 0 0 20px #00d4ff; margin-left: 20px; }
-        .nav { display: flex; gap: 30px; margin-right: 20px; }
-        .nav a { color: #ffffff; text-decoration: none; font-weight: 400; transition: all 0.3s ease;
-                 padding: 10px 15px; border-radius: 5px; position: relative; }
-        .nav a:hover { color: #00d4ff; text-shadow: 0 0 10px #00d4ff; background: rgba(0, 212, 255, 0.1); }
-
-        /* Hero Section */
-        .hero { text-align: center; padding: 60px 0; margin: 40px 0; }
-        .hero h1 {
-            font-family: 'Orbitron', monospace; font-size: 4rem; font-weight: 900;
-            background: linear-gradient(45deg, #00d4ff, #ff00d4, #d400ff, #00d4ff);
-            background-size: 400% 400%; -webkit-background-clip: text;
-            background-clip: text; -webkit-text-fill-color: transparent;
-            animation: gradientShift 3s ease-in-out infinite;
-            text-shadow: 0 0 40px rgba(0, 212, 255, 0.5); margin-bottom: 20px;
-        }
-        @keyframes gradientShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-        .hero-subtitle { font-size: 1.8rem; margin-bottom: 10px; color: #00d4ff; text-shadow: 0 0 15px #00d4ff; }
-        .hero-text { font-size: 1.2rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
-
-        /* Sections */
-        .sections { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 60px 0; }
-        .section-card {
-            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px);
-            border: 1px solid rgba(0, 212, 255, 0.3); border-radius: 20px; padding: 40px 30px;
-            text-align: center; transition: all 0.3s ease; position: relative; overflow: hidden;
-        }
-        .section-card:hover { transform: translateY(-10px); border-color: #00d4ff;
-                              box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3); }
-        .section-icon { font-size: 3rem; margin-bottom: 20px; }
-        .section-card h3 { font-family: 'Orbitron', monospace; font-size: 1.5rem; margin-bottom: 15px;
-                           color: #00d4ff; text-shadow: 0 0 10px #00d4ff; }
-        .section-card p { margin-bottom: 25px; line-height: 1.6; opacity: 0.9; }
-
-        /* Buttons */
-        .btn { display: inline-block; padding: 15px 30px; background: linear-gradient(45deg, #00d4ff, #0099cc);
-               color: #000; text-decoration: none; border-radius: 50px; font-weight: 600;
-               transition: all 0.3s ease; border: none; cursor: pointer; font-size: 1rem; }
-        .btn:hover { transform: scale(1.05); box-shadow: 0 0 30px #00d4ff;
-                     background: linear-gradient(45deg, #ff00d4, #d400ff); }
-
-        /* Live Discussion */
-        .live-discussion { background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 0, 212, 0.1));
-                           border: 2px solid #00d4ff; animation: pulse 2s infinite; }
-        @keyframes pulse { 0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
-                           50% { box-shadow: 0 0 40px rgba(0, 212, 255, 0.6); } }
-
-        /* Footer */
-        .footer { text-align: center; padding: 40px 0; margin-top: 60px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
-        .footer-quote { font-size: 1.2rem; font-style: italic; margin-bottom: 20px; color: #00d4ff; text-shadow: 0 0 10px #00d4ff; }
-        .footer-copyright { opacity: 0.7; font-size: 0.9rem; }
-        .made-with { margin-top: 15px; font-size: 0.9rem; }
-        .made-with a { color: #00d4ff; text-decoration: none; }
-        .made-with a:hover { color: #ff00d4; text-shadow: 0 0 10px #ff00d4; }
-
-        /* Responsive */
-        @media (max-width: 768px) { .hero h1 { font-size: 2.5rem; } }
-        @media (max-width: 480px) { .hero h1 { font-size: 2rem; } }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Air Blaster - Teacher's Day Special</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin:0;
+      font-family:'Poppins',sans-serif;
+      background:#000;
+      color:#fff;
+      text-align:center;
+    }
+    header {
+      background:#111;
+      padding:15px;
+    }
+    header .logo {
+      font-family:'Orbitron',sans-serif;
+      font-size:28px;
+      font-weight:900;
+      color:#00d4ff;
+    }
+    nav a {
+      margin:0 10px;
+      text-decoration:none;
+      color:#fff;
+      font-weight:600;
+    }
+    nav a:hover {
+      color:#00d4ff;
+    }
+    .hero {
+      padding:60px 20px;
+    }
+    .hero h1 {
+      font-size:42px;
+      color:#00d4ff;
+    }
+    .sections {
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      padding:20px;
+      gap:20px;
+    }
+    .section-card {
+      background:#111;
+      border-radius:12px;
+      padding:20px;
+      width:280px;
+      box-shadow:0 0 10px rgba(0,212,255,0.4);
+    }
+    .btn {
+      display:inline-block;
+      margin-top:10px;
+      padding:10px 20px;
+      border:none;
+      border-radius:8px;
+      background:#00d4ff;
+      color:#000;
+      font-weight:600;
+      cursor:pointer;
+    }
+    .btn:hover {
+      background:#fff;
+    }
+    footer {
+      background:#111;
+      padding:20px;
+      margin-top:30px;
+    }
+    .made-with {
+      margin-top:10px;
+      font-size:0.9rem;
+    }
+    .made-with a {
+      color:#00d4ff;
+      text-decoration:none;
+    }
+    .made-with a:hover {
+      color:#ff00d4;
+    }
+  </style>
 </head>
 <body>
-    <!-- Animated background -->
-    <div class="stars" id="stars"></div>
-    <div class="nebula"></div>
+  <!-- Header -->
+  <header>
+    <div class="logo">AIR BLASTER</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#students">Students</a>
+      <a href="#teachers">Teachers</a>
+      <a href="#help">Help Desk</a>
+      <a href="#discussion">Live Discussion</a>
+    </nav>
+  </header>
 
-    <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <div class="logo">AIR BLASTER</div>
-            <nav class="nav">
-                <a href="#home">Home</a>
-                <a href="#students">Students</a>
-                <a href="#teachers">Teachers</a>
-                <a href="#help">Help Desk</a>
-                <a href="#discussion">Live Discussion</a>
-            </nav>
-        </header>
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <h1>Happy Teacher's Day</h1>
+    <p>A Special Tribute from Air Blaster</p>
+  </section>
 
-        <!-- Hero Section -->
-        <section class="hero" id="home">
-            <h1>AIR BLASTER</h1>
-            <div class="hero-subtitle">Happy Teacher's Day – A Special Tribute from Air Blaster</div>
-            <p class="hero-text">Celebrating the bond of learning and guidance in a futuristic way.</p>
-        </section>
+  <!-- Sections -->
+  <div class="sections">
 
-        <!-- Sections -->
-        <div class="sections">
-            <!-- Help Desk -->
-            <div class="section-card" id="help">
-                <div class="section-icon">📩</div>
-                <h3>Help Desk</h3>
-                <p>For queries, reach us at:</p>
-                <p><a href="mailto:therishu15@gmail.com" class="email-link">therishu15@gmail.com</a></p>
-            </div>
-
-            <!-- Student Section -->
-            <div class="section-card" id="students">
-                <div class="section-icon">🎓</div>
-                <h3>Student Section</h3>
-                <p>Share your thoughts and gratitude for Teacher's Day.</p>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSd8usK01gw8i0iYiui1ZKUpFNW_adOr829ddrAlh93AuuUNAw/viewform?usp=dialog" target="_blank" class="btn">👉 Fill Google Form</a>
-            </div>
-
-            <!-- Teacher Section -->
-            <div class="section-card" id="teachers">
-                <div class="section-icon">👩‍🏫</div>
-                <h3>Teacher Section</h3>
-                <p>We value your guidance and wisdom. Share your thoughts with us.</p>
-                <button class="btn btn-secondary">Click here to fill the form</button>
-            </div>
-
-            <!-- Live Discussion -->
-            <div class="section-card live-discussion" id="discussion">
-                <div class="section-icon">💬</div>
-                <h3>Join the Live Discussion</h3>
-                <p>Let's share love, gratitude, and futuristic ideas together.</p>
-                <button class="btn" onclick="toggleChat()">Join Now</button>
-            </div>
-        </div>
+    <!-- Help Desk -->
+    <div class="section-card" id="help">
+      <h3>Help Desk</h3>
+      <p>For queries, reach us at:</p>
+      <p><a href="mailto:therishu15@gmail.com">therishu15@gmail.com</a></p>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-quote">"A teacher takes a hand, opens a mind, and touches a heart."</div>
-            <div class="footer-copyright">© 2025 Air Blaster – All Rights Reserved</div>
-            <div class="made-with">Made with <a href="https://www.prabonyai.in/" target="_blank">Prabony AI</a></div>
-        </div>
-    </footer>
+    <!-- Student Section -->
+    <div class="section-card" id="students">
+      <h3>Student Section</h3>
+      <p>Share your thoughts and gratitude for Teacher's Day.</p>
+      <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSd8usK01gw8i0iYiui1ZKUpFNW_adOr829ddrAlh93AuuUNAw/viewform?usp=dialog" target="_blank">
+        👉 Fill the Form
+      </a>
+    </div>
 
-    <!-- Tawk.to Script -->
-    <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-        s1.async=true;
-        s1.src='https://embed.tawk.to/68b02a36a710e91925d8bb14/1j3o29q1o';
-        s1.charset='UTF-8';
-        s1.setAttribute('crossorigin','*');
-        s1.onload = function() { Tawk_API.hideWidget(); }; // hide by default
-        s0.parentNode.insertBefore(s1,s0);
-    })();
+    <!-- Teacher Section -->
+    <div class="section-card" id="teachers">
+      <h3>Teacher Section</h3>
+      <p>We value your guidance and wisdom. Share your thoughts with us.</p>
+      <a class="btn" href="#" target="_blank">👉 Fill Google Form</a>
+    </div>
 
-    function toggleChat() {
-        if (Tawk_API && typeof Tawk_API.toggle === "function") {
-            Tawk_API.toggle(); // open chat when Join Now clicked
-        }
+    <!-- Live Discussion -->
+    <div class="section-card" id="discussion">
+      <h3>Join the Live Discussion</h3>
+      <p>Let's share love, gratitude, and futuristic ideas together.</p>
+      <button class="btn" onclick="toggleChat()">Join Now</button>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div>"A teacher takes a hand, opens a mind, and touches a heart."</div>
+    <div class="made-with">Made with <a href="https://www.prabonyai.in/" target="_blank">Prabony AI</a></div>
+  </footer>
+
+  <!-- Tawk.to Script -->
+  <script type="text/javascript">
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    // 👉 Replace this with your real Tawk.to link
+    s1.src='https://embed.tawk.to/68b02a36a710e91925d8bb14/1j3o29q1o';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s1.onload=function(){Tawk_API.hideWidget();}
+    s0.parentNode.insertBefore(s1,s0);
+  })();
+
+  function toggleChat(){
+    if(Tawk_API && typeof Tawk_API.toggle==="function"){
+      Tawk_API.toggle();
     }
-    </script>
-
-    <script>
-        // Generate animated stars
-        function createStars() {
-            const starsContainer = document.getElementById('stars');
-            const numberOfStars = 100;
-            for (let i = 0; i < numberOfStars; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.animationDelay = Math.random() * 2 + 's';
-                star.style.animationDuration = (Math.random() * 3 + 1) + 's';
-                starsContainer.appendChild(star);
-            }
-        }
-        window.addEventListener('load', createStars);
-    </script>
+  }
+  </script>
 </body>
 </html>
