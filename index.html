@@ -98,8 +98,9 @@
             <span class="close" onclick="closeModal('studentModal')">&times;</span>
             <h3>Dear Students</h3>
             <p>Share your thoughts for Teacher's Day by filling this form.</p>
-            <!-- 🔹 Your Google Form link here -->
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSd8WBHwOWt6VVg-mbikBGZ-IF8Vi_DDC8d3yxa17monWQPqAQ/viewform?usp=dialog" target="_blank" class="btn">👉 Fill Google Form</a>
+            <!-- ✅ Only Google Form link added -->
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSd8WBHwOWt6VVg-mbikBGZ-IF8Vi_DDC8d3yxa17monWQPqAQ/viewform?usp=dialog" 
+               target="_blank" class="btn">👉 Fill Google Form</a>
         </div>
     </div>
 
@@ -109,8 +110,7 @@
             <span class="close" onclick="closeModal('teacherModal')">&times;</span>
             <h3>Dear Teachers</h3>
             <p>We value your guidance. Kindly share your words with us by filling this form.</p>
-            <!-- You can replace this link with a teacher form later -->
-            <a href="#" target="_blank" class="btn btn-secondary">👉 Fill Google Form</a>
+            <a href="#" class="btn btn-secondary">👉 Fill Google Form</a>
         </div>
     </div>
 
@@ -120,7 +120,7 @@
     (function(){
         var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
         s1.async=true;
-        s1.src='https://embed.tawk.to/YOUR_PROPERTY_ID/DEFAULT'; // replace with your real Tawk.to link
+        s1.src='https://embed.tawk.to/YOUR_PROPERTY_ID/DEFAULT'; // 🔹 replace with your Tawk.to code
         s1.charset='UTF-8';
         s1.setAttribute('crossorigin','*');
         s1.onload = function() {
@@ -134,19 +134,17 @@
             Tawk_API.toggle();
         }
     }
-    </script>
 
-    <script>
-        // ✅ Keep your original modal functions
-        function openStudentModal() {
-            document.getElementById("studentModal").style.display = "block";
-        }
-        function openTeacherModal() {
-            document.getElementById("teacherModal").style.display = "block";
-        }
-        function closeModal(id) {
-            document.getElementById(id).style.display = "none";
-        }
+    // original modal functions
+    function openStudentModal() {
+        document.getElementById("studentModal").style.display = "block";
+    }
+    function openTeacherModal() {
+        document.getElementById("teacherModal").style.display = "block";
+    }
+    function closeModal(id) {
+        document.getElementById(id).style.display = "none";
+    }
     </script>
 </body>
 </html>
