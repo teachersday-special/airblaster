@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -440,11 +439,7 @@
             <p class="section-description">Share your thoughts and gratitude for your teachers on this special day.</p>
             <button class="neon-button" onclick="openStudentModal()">Click here to fill the form</button>
         </div>
-<script>
-function openGoogleForm() {
-    window.open('https://docs.google.com/forms/d/e/1FAIpQLSd8usK01gw8i0iYiui1ZKUpFNW_adOr829ddrAlh93AuuUNAw/viewform?usp=header', '_blank');
-}
-</script>
+
         <!-- Teacher Section -->
         <div class="section-card" id="teachers">
             <div class="section-icon">👩‍🏫</div>
@@ -474,7 +469,7 @@ function openGoogleForm() {
             <span class="close" onclick="closeModal('studentModal')">&times;</span>
             <h2 style="color: #00d4ff; margin-bottom: 1rem;">Dear Students</h2>
             <p style="margin-bottom: 2rem;">Share your thoughts for Teacher's Day by filling this form.</p>
-            <a href="#" class="neon-button" onclick="openGoogleForm()" target="_blank">👉 Fill Google Form</a>
+            <a href="#" class="neon-button" onclick="openStudentForm()" target="_blank">👉 Fill Google Form</a>
         </div>
     </div>
 
@@ -484,7 +479,7 @@ function openGoogleForm() {
             <span class="close" onclick="closeModal('teacherModal')">&times;</span>
             <h2 style="color: #00d4ff; margin-bottom: 1rem;">Dear Teachers</h2>
             <p style="margin-bottom: 2rem;">We value your guidance. Kindly share your words with us by filling this form.</p>
-            <a href="#" class="neon-button" onclick="openGoogleForm()" target="_blank">👉 Fill Google Form</a>
+            <a href="#" class="neon-button" onclick="openTeacherForm()" target="_blank">👉 Fill Google Form</a>
         </div>
     </div>
 
@@ -520,9 +515,15 @@ function openGoogleForm() {
             document.getElementById(modalId).style.display = 'none';
         }
 
-        function openGoogleForm() {
-            // Replace with your actual Google Form URL
-            window.open('https://forms.google.com/your-form-url', '_blank');
+        // Open actual Google Forms
+        function openStudentForm() {
+            window.open('https://docs.google.com/forms/d/e/1FAIpQLSd8usK01gw8i0iYiui1ZKUpFNW_adOr829ddrAlh93AuuUNAw/viewform?usp=header', '_blank');
+            playClickSound();
+        }
+
+        function openTeacherForm() {
+            // Replace with teacher form URL if different
+            window.open('https://docs.google.com/forms/d/e/1FAIpQLSd8usK01gw8i0iYiui1ZKUpFNW_adOr829ddrAlh93AuuUNAw/viewform?usp=header', '_blank');
             playClickSound();
         }
 
@@ -534,7 +535,6 @@ function openGoogleForm() {
 
         // Sound effect function (optional)
         function playClickSound() {
-            // Create a simple beep sound using Web Audio API
             const audioContext = new (window.AudioContext || window.webkitAudioContext)();
             const oscillator = audioContext.createOscillator();
             const gainNode = audioContext.createGain();
