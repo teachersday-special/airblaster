@@ -6,20 +6,98 @@
     <title>Air Blaster - Teacher's Day Special</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* (your existing CSS unchanged) */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        .made-with {
-            margin-top: 15px;
-            font-size: 0.9rem;
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
         }
-        .made-with a {
-            color: #00d4ff;
-            text-decoration: none;
+
+        /* Animated stars background */
+        .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+        .star { position: absolute; width: 2px; height: 2px; background: #ffffff; border-radius: 50%; animation: twinkle 2s infinite ease-in-out; }
+        @keyframes twinkle { 0%, 100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 1; transform: scale(1.2); } }
+
+        /* Nebula effect */
+        .nebula {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.2) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(120, 200, 255, 0.15) 0%, transparent 50%);
+            pointer-events: none; z-index: 2; animation: nebulaPulse 8s ease-in-out infinite;
         }
-        .made-with a:hover {
-            color: #ff00d4;
-            text-shadow: 0 0 10px #ff00d4;
+        @keyframes nebulaPulse { 0%, 100% { opacity: 0.8; } 50% { opacity: 1; } }
+
+        /* Main content */
+        .container { position: relative; z-index: 10; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* Header */
+        .header { display: flex; justify-content: space-between; align-items: center; padding: 20px 0;
+                  backdrop-filter: blur(10px); background: rgba(0, 0, 0, 0.3); border-radius: 15px;
+                  margin: 20px 0; border: 1px solid rgba(255, 255, 255, 0.1); }
+        .logo { font-family: 'Orbitron', monospace; font-size: 24px; font-weight: 700; color: #00d4ff;
+                text-shadow: 0 0 20px #00d4ff; margin-left: 20px; }
+        .nav { display: flex; gap: 30px; margin-right: 20px; }
+        .nav a { color: #ffffff; text-decoration: none; font-weight: 400; transition: all 0.3s ease;
+                 padding: 10px 15px; border-radius: 5px; position: relative; }
+        .nav a:hover { color: #00d4ff; text-shadow: 0 0 10px #00d4ff; background: rgba(0, 212, 255, 0.1); }
+
+        /* Hero Section */
+        .hero { text-align: center; padding: 60px 0; margin: 40px 0; }
+        .hero h1 {
+            font-family: 'Orbitron', monospace; font-size: 4rem; font-weight: 900;
+            background: linear-gradient(45deg, #00d4ff, #ff00d4, #d400ff, #00d4ff);
+            background-size: 400% 400%; -webkit-background-clip: text;
+            background-clip: text; -webkit-text-fill-color: transparent;
+            animation: gradientShift 3s ease-in-out infinite;
+            text-shadow: 0 0 40px rgba(0, 212, 255, 0.5); margin-bottom: 20px;
         }
+        @keyframes gradientShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+        .hero-subtitle { font-size: 1.8rem; margin-bottom: 10px; color: #00d4ff; text-shadow: 0 0 15px #00d4ff; }
+        .hero-text { font-size: 1.2rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+
+        /* Sections */
+        .sections { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 60px 0; }
+        .section-card {
+            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 212, 255, 0.3); border-radius: 20px; padding: 40px 30px;
+            text-align: center; transition: all 0.3s ease; position: relative; overflow: hidden;
+        }
+        .section-card:hover { transform: translateY(-10px); border-color: #00d4ff;
+                              box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3); }
+        .section-icon { font-size: 3rem; margin-bottom: 20px; }
+        .section-card h3 { font-family: 'Orbitron', monospace; font-size: 1.5rem; margin-bottom: 15px;
+                           color: #00d4ff; text-shadow: 0 0 10px #00d4ff; }
+        .section-card p { margin-bottom: 25px; line-height: 1.6; opacity: 0.9; }
+
+        /* Buttons */
+        .btn { display: inline-block; padding: 15px 30px; background: linear-gradient(45deg, #00d4ff, #0099cc);
+               color: #000; text-decoration: none; border-radius: 50px; font-weight: 600;
+               transition: all 0.3s ease; border: none; cursor: pointer; font-size: 1rem; }
+        .btn:hover { transform: scale(1.05); box-shadow: 0 0 30px #00d4ff;
+                     background: linear-gradient(45deg, #ff00d4, #d400ff); }
+
+        /* Live Discussion */
+        .live-discussion { background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 0, 212, 0.1));
+                           border: 2px solid #00d4ff; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
+                           50% { box-shadow: 0 0 40px rgba(0, 212, 255, 0.6); } }
+
+        /* Footer */
+        .footer { text-align: center; padding: 40px 0; margin-top: 60px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+        .footer-quote { font-size: 1.2rem; font-style: italic; margin-bottom: 20px; color: #00d4ff; text-shadow: 0 0 10px #00d4ff; }
+        .footer-copyright { opacity: 0.7; font-size: 0.9rem; }
+        .made-with { margin-top: 15px; font-size: 0.9rem; }
+        .made-with a { color: #00d4ff; text-decoration: none; }
+        .made-with a:hover { color: #ff00d4; text-shadow: 0 0 10px #ff00d4; }
+
+        /* Responsive */
+        @media (max-width: 768px) { .hero h1 { font-size: 2.5rem; } }
+        @media (max-width: 480px) { .hero h1 { font-size: 2rem; } }
     </style>
 </head>
 <body>
@@ -62,7 +140,7 @@
                 <div class="section-icon">🎓</div>
                 <h3>Student Section</h3>
                 <p>Share your thoughts and gratitude for Teacher's Day.</p>
-                <button class="btn" onclick="openStudentModal()">Click here to fill the form</button>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSd8usK01gw8i0iYiui1ZKUpFNW_adOr829ddrAlh93AuuUNAw/viewform?usp=dialog" target="_blank" class="btn">👉 Fill Google Form</a>
             </div>
 
             <!-- Teacher Section -->
@@ -70,7 +148,7 @@
                 <div class="section-icon">👩‍🏫</div>
                 <h3>Teacher Section</h3>
                 <p>We value your guidance and wisdom. Share your thoughts with us.</p>
-                <button class="btn btn-secondary" onclick="openTeacherModal()">Click here to fill the form</button>
+                <button class="btn btn-secondary">Click here to fill the form</button>
             </div>
 
             <!-- Live Discussion -->
@@ -92,27 +170,7 @@
         </div>
     </footer>
 
-    <!-- Student Modal -->
-    <div class="modal" id="studentModal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('studentModal')">&times;</span>
-            <h3>Dear Students</h3>
-            <p>Share your thoughts for Teacher's Day by filling this form.</p>
-            <a href="#" class="btn" onclick="openForm()">👉 Fill Google Form</a>
-        </div>
-    </div>
-
-    <!-- Teacher Modal -->
-    <div class="modal" id="teacherModal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('teacherModal')">&times;</span>
-            <h3>Dear Teachers</h3>
-            <p>We value your guidance. Kindly share your words with us by filling this form.</p>
-            <a href="#" class="btn btn-secondary" onclick="openForm()">👉 Fill Google Form</a>
-        </div>
-    </div>
-
-    <!-- Tawk.to Script (Initially hidden) -->
+    <!-- Tawk.to Script -->
     <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
@@ -121,21 +179,33 @@
         s1.src='https://embed.tawk.to/68b02a36a710e91925d8bb14/1j3o29q1o';
         s1.charset='UTF-8';
         s1.setAttribute('crossorigin','*');
-        s1.onload = function() {
-            Tawk_API.hideWidget(); // Hide chat widget until button clicked
-        };
+        s1.onload = function() { Tawk_API.hideWidget(); }; // hide by default
         s0.parentNode.insertBefore(s1,s0);
     })();
 
     function toggleChat() {
         if (Tawk_API && typeof Tawk_API.toggle === "function") {
-            Tawk_API.toggle(); // open/close chat on click
+            Tawk_API.toggle(); // open chat when Join Now clicked
         }
     }
     </script>
 
     <script>
-        // (all your existing JS functions remain the same)
+        // Generate animated stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const numberOfStars = 100;
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 2 + 's';
+                star.style.animationDuration = (Math.random() * 3 + 1) + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+        window.addEventListener('load', createStars);
     </script>
 </body>
 </html>
