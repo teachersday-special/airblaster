@@ -6,7 +6,20 @@
     <title>Air Blaster - Teacher's Day Special</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* --- Your existing CSS remains unchanged --- */
+        /* (your existing CSS unchanged) */
+
+        .made-with {
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        .made-with a {
+            color: #00d4ff;
+            text-decoration: none;
+        }
+        .made-with a:hover {
+            color: #ff00d4;
+            text-shadow: 0 0 10px #ff00d4;
+        }
     </style>
 </head>
 <body>
@@ -52,4 +65,88 @@
                 <button class="btn" onclick="openStudentModal()">Click here to fill the form</button>
             </div>
 
-            <!-- Teacher Sec
+            <!-- Teacher Section -->
+            <div class="section-card" id="teachers">
+                <div class="section-icon">👩‍🏫</div>
+                <h3>Teacher Section</h3>
+                <p>We value your guidance and wisdom. Share your thoughts with us.</p>
+                <button class="btn btn-secondary" onclick="openTeacherModal()">Click here to fill the form</button>
+            </div>
+
+            <!-- Live Discussion -->
+            <div class="section-card live-discussion" id="discussion">
+                <div class="section-icon">💬</div>
+                <h3>Join the Live Discussion</h3>
+                <p>Let's share love, gratitude, and futuristic ideas together.</p>
+                <button class="btn" onclick="toggleChat()">Join Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-quote">"A teacher takes a hand, opens a mind, and touches a heart."</div>
+            <div class="footer-copyright">© 2025 Air Blaster – All Rights Reserved</div>
+            <div class="made-with">Made with <a href="https://www.prabonyai.in/" target="_blank">Prabony AI</a></div>
+        </div>
+    </footer>
+
+    <!-- Student Modal -->
+    <div class="modal" id="studentModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('studentModal')">&times;</span>
+            <h3>Dear Students</h3>
+            <p>Share your thoughts for Teacher's Day by filling this form.</p>
+            <!-- 🔹 Your Google Form link here -->
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSd8WBHwOWt6VVg-mbikBGZ-IF8Vi_DDC8d3yxa17monWQPqAQ/viewform?usp=dialog" target="_blank" class="btn">👉 Fill Google Form</a>
+        </div>
+    </div>
+
+    <!-- Teacher Modal -->
+    <div class="modal" id="teacherModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('teacherModal')">&times;</span>
+            <h3>Dear Teachers</h3>
+            <p>We value your guidance. Kindly share your words with us by filling this form.</p>
+            <!-- You can replace this link with a teacher form later -->
+            <a href="#" target="_blank" class="btn btn-secondary">👉 Fill Google Form</a>
+        </div>
+    </div>
+
+    <!-- ✅ Tawk.to Script -->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/YOUR_PROPERTY_ID/DEFAULT'; // replace with your real Tawk.to link
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s1.onload = function() {
+            Tawk_API.hideWidget(); // hide until Join button clicked
+        };
+        s0.parentNode.insertBefore(s1,s0);
+    })();
+
+    function toggleChat() {
+        if (Tawk_API && typeof Tawk_API.toggle === "function") {
+            Tawk_API.toggle();
+        }
+    }
+    </script>
+
+    <script>
+        // ✅ Keep your original modal functions
+        function openStudentModal() {
+            document.getElementById("studentModal").style.display = "block";
+        }
+        function openTeacherModal() {
+            document.getElementById("teacherModal").style.display = "block";
+        }
+        function closeModal(id) {
+            document.getElementById(id).style.display = "none";
+        }
+    </script>
+</body>
+</html>
